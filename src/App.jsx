@@ -4,6 +4,7 @@ import AuthLayout from './layouts/AuthLayout.jsx';
 import Login from './pages/user/login/Login.jsx';
 import Register from './pages/user/register/Register.jsx';
 import DashboardLayout from './layouts/DashboardLayout.jsx';
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
   const router = createBrowserRouter(
@@ -13,12 +14,12 @@ export default function App() {
         element: <AuthLayout />,
         children: [
           {
-            path: "/login",
-            element: <Login />,
-          },
-          {
             path: "/register",
             element: <Register />,
+          },
+          {
+            path: "/login",
+            element: <Login />,
           },
         ],
       },
@@ -30,6 +31,7 @@ export default function App() {
   );
   return (
     <>
+      <ToastContainer />  {/* To display toast messages */}
       <RouterProvider router={router} />
     </>
   )

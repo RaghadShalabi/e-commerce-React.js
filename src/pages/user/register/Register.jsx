@@ -47,7 +47,7 @@ export default function Register() {
     return (
         <>
             <Form onSubmit={handleSubmit(registerUser)}>
-                {serverError ?? <div className='text-danger'>{serverError}</div>}
+                {serverError ? <div className='text-danger'>{serverError}</div> : null}
                 <FloatingLabel
                     controlId="floatingInput"
                     label="User Name"

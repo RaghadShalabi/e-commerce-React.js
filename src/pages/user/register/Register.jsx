@@ -42,7 +42,7 @@ export default function Register() {
             if (error.response.status == 409) {
                 setServerError('Email address already exists');
             } else {
-                setServerError('server error, , please try again later!');
+                setServerError('server error, please try again later!');
             }
         } finally {
             setIsLoading(false);

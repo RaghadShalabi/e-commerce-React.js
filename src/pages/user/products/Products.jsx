@@ -8,7 +8,7 @@ export default function Products() {
 
     const getProducts = async () => {
         try {
-            const response = await axios.get(`https://ecommerce-node4.onrender.com/products?limit=10`);
+            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/products?limit=10`);
             setProducts(response.data.products);
             console.log(response.data.products);
         } catch (err) {

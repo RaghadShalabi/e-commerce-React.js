@@ -10,7 +10,7 @@ export default function CategoryProducts() {
 
     const getProducts = async () => {
         try {
-            const response = await axios.get(`https://ecommerce-node4.onrender.com/products/category/${categoryId}`);
+            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/products/category/${categoryId}`);
             setProducts(response.data.products);
             console.log(response.data.products);
         } catch (err) {

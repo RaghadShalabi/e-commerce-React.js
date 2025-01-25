@@ -9,7 +9,7 @@ export default function Categories() {
 
   const getCategories = async () => {
     try {
-      const response = await axios.get(`https://ecommerce-node4.onrender.com/categories/active`);
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/categories/active`);
       setCategories(response.data.categories);
       console.log(response.data.categories);
     } catch (err) {

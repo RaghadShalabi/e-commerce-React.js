@@ -6,6 +6,7 @@ export default function Products() {
     const [products, setProducts] = useState([{}]);
     const [isLoading, setIsLoading] = useState(true);
 
+
     const getProducts = async () => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/products?limit=10`);

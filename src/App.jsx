@@ -11,6 +11,9 @@ import UserLayout from './layouts/UserLayout.jsx';
 import Products from './pages/user/products/Products.jsx';
 import CategoryProducts from './pages/user/products/CategoryProducts.jsx';
 import ProductDetails from './pages/user/products/ProductDetails.jsx';
+import Cart from './pages/user/cart/Cart.jsx';
+import ProtectedRoute from './components/user/ProtectedRoute.jsx';
+import CartContextProvider from './components/user/context/CartContext.jsx';
 
 export default function App() {
   const router = createBrowserRouter(
@@ -20,55 +23,63 @@ export default function App() {
         element: <AuthLayout />,
         children: [
           {
-            path: "/auth/register",
+            path: "register",
             element: <Register />,
           },
           {
-            path: "/auth/login",
+            path: "login",
             element: <Login />,
           },
         ],
       },
       {
         path: "/",
-        element: <UserLayout />,
+        element:
+          <ProtectedRoute>
+            <UserLayout />
+          </ProtectedRoute>,
         children: [
           {
             path: "/",
             element: <Home />,
           },
           {
-            path: "/categories",
+            path: "categories",
             element: <Categories />,
 
           },
           {
-            path: "/products",
+            path: "products",
             element: <Products />,
           },
           {
-            path:"/categories/:categoryId",
+            path: "categories/:categoryId",
             element: <CategoryProducts />,
           },
           {
-            path:"/product/:productId",
+            path: "product/:productId",
             element: <ProductDetails />,
+          },
+          {
+            path: "cart",
+            element: <Cart />
           }
         ]
       },
       {
         path: "/dashboard",
-        element: <DashboardLayout />,
-        children: [
-          // Add more routes here for dashboard
+        element: <DashboardLayout />
+        , children: [
         ],
       },
     ],
   );
   return (
     <>
-      <ToastContainer />  {/* To display toast messages */}
-      <RouterProvider router={router} />
+      <CartContextProvider>
+        <ToastContainer />  {/* To display toast messages */}
+        <RouterProvider router={router} />
+      </CartContextProvider>
     </>
   )
 }

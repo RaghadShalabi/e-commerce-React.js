@@ -16,7 +16,13 @@ const CartContextProvider = ({ children }) => {
                 }
             }
         )
-        setCartCount(response.data.count);
+        // حساب العدد الكلي للقطع (الكميات)
+        const totalQuantity = response.data.products.reduce((total, product) => {
+            return total + product.quantity;
+        }, 0);
+
+        setCartCount(totalQuantity); // تحديث العدد الكلي للقطع
+        // setCartCount(response.data.count);
         console.log(response.data.count);
     };
 

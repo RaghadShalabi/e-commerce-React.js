@@ -31,35 +31,61 @@ export default function Cart() {
         }
     };
 
+
+
+    const inQty = async (productId) => {
+        try {
+            const token = localStorage.getItem('userToken');
+            await axios.patch(`${import.meta.env.VITE_BASE_URL}/cart/incraseQuantity`, { productId }, {
+                headers: {
+                    Authorization: `Tariq__${token}`
+                }
+            });
+            setCartCount(cartCount + 1);
+            getCart(); // تحديث السلة بعد التعديل
+        } catch (error) {
+            console.error("Error increasing quantity:", error);
+        }
+    }
+
+    const deQty = async (productId, currentQuantity) => {
+        try {
+            const token = localStorage.getItem('userToken');
+
+            if (currentQuantity == 1) {
+                // حذف العنصر إذا كانت الكمية 1
+                const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/cart/removeItem`,
+                    {
+                        productId
+                    },
+                    {
+                        headers: {
+                            Authorization: `Tariq__${token}`
+                        }
+                    }
+                );
+            } else {
+                // تقليل الكمية إذا كانت أكبر من 1
+                const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/cart/decraseQuantity`, { productId }, {
+                    headers: {
+                        Authorization: `Tariq__${token}`
+                    }
+                });
+            }
+
+            setCartCount(cartCount - 1);
+            getCart(); // تحديث السلة بعد التعديل
+        } catch (error) {
+            console.error("Error decreasing quantity:", error);
+        }
+    }
+
     useEffect(() => {
         getCart();
     }, [])
 
     if (isLoading) {
         return <h2>Loading...</h2>
-    }
-
-    const inQty = async (productId) => {
-        const token = localStorage.getItem('userToken');
-        const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/cart/incraseQuantity`, { productId: productId },
-            {
-                headers: {
-                    Authorization: `Tariq__${token}`
-                }
-            });
-        setCartCount(cartCount + 1)
-    }
-
-    const deQty = async (productId) => {
-        const token = localStorage.getItem('userToken');
-        const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/cart/decraseQuantity`, { productId: productId },
-            {
-                headers: {
-                    Authorization: `Tariq__${token}`
-                }
-            });
-
-        setCartCount(cartCount - 1)
     }
 
     return (
@@ -86,11 +112,19 @@ export default function Cart() {
                             <td>
                                 <Button onClick={() => inQty(item.productId)}>+</Button>
                                 {item.quantity}
-                                <Button onClick={() => deQty(item.productId)}>-</Button>
+                                <Button onClick={() => deQty(item.productId, item.quantity)}>-</Button>
                             </td>
                             <td>{item.quantity * item.details.finalPrice}</td>
                         </tr>
                     )}
+                    <tr>
+                        <td colSpan={5} style={{ textAlign: 'center', fontWeight: 'bold' }}>
+                            Total :
+                        </td>
+                        <td style={{ fontWeight: 'bold' }}>
+                            {cart.reduce((total, item) => total + item.quantity * item.details.finalPrice, 0)}
+                        </td>
+                    </tr>
                 </tbody>
             </Table>
         </section>

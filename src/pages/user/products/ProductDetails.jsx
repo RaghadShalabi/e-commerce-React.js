@@ -15,7 +15,6 @@ export default function ProductDetails() {
 
     const { cartCount, setCartCount } = useContext(CartContext)
 
-
     const getDetails = async () => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/products/${productId}`);

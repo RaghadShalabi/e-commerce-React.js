@@ -11,7 +11,6 @@ export default function Cart() {
 
     const { cartCount, setCartCount } = useContext(CartContext)
 
-
     const getCart = async () => {
         try {
             const token = localStorage.getItem('userToken');
@@ -30,8 +29,6 @@ export default function Cart() {
             setIsLoading(false);
         }
     };
-
-
 
     const inQty = async (productId) => {
         try {

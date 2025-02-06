@@ -14,6 +14,10 @@ import ProductDetails from './pages/user/products/ProductDetails.jsx';
 import Cart from './pages/user/cart/Cart.jsx';
 import ProtectedRoute from './components/user/ProtectedRoute.jsx';
 import CartContextProvider from './components/user/context/CartContext.jsx';
+import Profile from './pages/user/profile/Profile.jsx';
+import Info from './pages/user/profile/Info.jsx';
+import Orders from './pages/user/profile/Orders.jsx';
+import { UserContextProvider } from './components/user/context/UserContext.jsx';
 
 export default function App() {
   const router = createBrowserRouter(
@@ -63,6 +67,20 @@ export default function App() {
           {
             path: "cart",
             element: <Cart />
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+            children: [
+              {
+                path: "info",
+                element: <Info />
+              },
+              {
+                path: "orders",
+                element: <Orders />
+              }
+            ]
           }
         ]
       },
@@ -77,8 +95,10 @@ export default function App() {
   return (
     <>
       <CartContextProvider>
-        <ToastContainer />  {/* To display toast messages */}
-        <RouterProvider router={router} />
+        <UserContextProvider>
+          <ToastContainer />  {/* To display toast messages */}
+          <RouterProvider router={router} />
+        </UserContextProvider>
       </CartContextProvider>
     </>
   )

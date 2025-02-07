@@ -1,5 +1,5 @@
 import React from 'react'
-import Category from '../category/category.jsx'
+import Category from '../category/Category.jsx';
 
 export default function Home() {
     return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import CustomSidebar from '../../../components/user/sidebar/customSidebar.jsx'
+import CustomSidebar from '../../../components/user/sidebar/CustomSidebar.jsx'
 import { Outlet } from 'react-router-dom'
 import { Col, Container, Row } from 'react-bootstrap'
 

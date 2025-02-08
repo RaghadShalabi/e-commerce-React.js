@@ -4,13 +4,13 @@ import { createContext } from 'react';
 
 export const UserContext = createContext();
 
-export const UserContextProvider =  ({ children }) => {
+export const UserContextProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const getUser = async()=>{
+    const getUser = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/profile`,{
+            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/profile`, {
                 headers: {
                     Authorization: `Tariq__${localStorage.getItem('userToken')}`
                 }
@@ -20,18 +20,18 @@ export const UserContextProvider =  ({ children }) => {
         } catch (error) {
             console.error(error);
             setUserInfo(null);
-        }finally{
+        } finally {
             setLoading(false);
         }
-    } 
+    }
 
-    useEffect(()=>{
+    useEffect(() => {
         getUser();
     }, [])
 
 
     return (
-        <UserContext.Provider value={{ userInfo, loading }}>
+        <UserContext.Provider value={{ userInfo, setUserInfo, loading, setLoading }}>
             {children}
         </UserContext.Provider>
     )

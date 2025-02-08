@@ -1,10 +1,10 @@
 import React from 'react'
-import Category from '../category/Category.jsx';
+import SomeCategory from '../someCategory/SomeCategory.jsx'
 
 export default function Home() {
     return (
         <div>
-            <Category />
+            <SomeCategory />
         </div>
     )
 }

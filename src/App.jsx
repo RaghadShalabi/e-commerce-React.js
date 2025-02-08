@@ -18,6 +18,7 @@ import Profile from './pages/user/profile/Profile.jsx';
 import Info from './pages/user/profile/Info.jsx';
 import Orders from './pages/user/profile/Orders.jsx';
 import { UserContextProvider } from './components/user/context/UserContext.jsx';
+import Image from './pages/user/profile/Image.jsx';
 
 export default function App() {
   const router = createBrowserRouter(
@@ -79,6 +80,10 @@ export default function App() {
               {
                 path: "orders",
                 element: <Orders />
+              },
+              {
+                path: "image",
+                element: <Image />
               }
             ]
           }

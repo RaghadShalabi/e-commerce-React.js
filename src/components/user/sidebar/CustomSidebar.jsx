@@ -9,6 +9,7 @@ export default function CustomSidebar() {
             <Menu>
                 <MenuItem component={<Link to="/profile/info" />}> Info</MenuItem>
                 <MenuItem component={<Link to="/profile/orders" />}> Orders</MenuItem>
+                <MenuItem component={<Link to="/profile/Image" />}>Image</MenuItem>
             </Menu>
         </Sidebar>
     )

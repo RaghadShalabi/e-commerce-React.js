@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 
-export default function Category() {
+export default function SomeCategory() {
     const [categories, setCategories] = useState([{}]);
     const [isLoading, setIsLoading] = useState(true);
 

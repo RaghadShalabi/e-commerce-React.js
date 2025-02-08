@@ -2,15 +2,23 @@ import { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext.jsx';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { UserContext } from '../context/UserContext.jsx';
 
 export default function CustomNavbar() {
-    const { userInfo } = useContext(UserContext);
+    const { userInfo, setUserInfo } = useContext(UserContext);
 
     const { cartCount } = useContext(CartContext);
+
+    const navigate = useNavigate()
+
+    const logout = () => {
+        localStorage.removeItem('userToken');
+        setUserInfo(null);
+        navigate('auth/login');
+    }
 
     return (
 
@@ -29,7 +37,7 @@ export default function CustomNavbar() {
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item as={Link} to={'/profile'}>Profile</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Log out</Dropdown.Item>
+                                <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </Nav>

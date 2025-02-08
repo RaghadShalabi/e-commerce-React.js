@@ -19,13 +19,18 @@ import Info from './pages/user/profile/Info.jsx';
 import Orders from './pages/user/profile/Orders.jsx';
 import { UserContextProvider } from './components/user/context/UserContext.jsx';
 import Image from './pages/user/profile/Image.jsx';
+import AuthProtectedRouter from './components/user/AuthProtectedRouter.jsx';
 
 export default function App() {
   const router = createBrowserRouter(
     [
       {
         path: "/auth",
-        element: <AuthLayout />,
+        element:
+          <AuthProtectedRouter>
+            <AuthLayout />
+          </AuthProtectedRouter>
+        ,
         children: [
           {
             path: "register",
@@ -40,9 +45,14 @@ export default function App() {
       {
         path: "/",
         element:
-          <ProtectedRoute>
-            <UserLayout />
-          </ProtectedRoute>,
+          <UserContextProvider>
+            <CartContextProvider>
+              <ProtectedRoute>
+                <UserLayout />
+              </ProtectedRoute>
+            </CartContextProvider>
+          </UserContextProvider>
+        ,
         children: [
           {
             path: "/",
@@ -51,7 +61,6 @@ export default function App() {
           {
             path: "categories",
             element: <Categories />,
-
           },
           {
             path: "products",
@@ -99,12 +108,8 @@ export default function App() {
   );
   return (
     <>
-      <CartContextProvider>
-        <UserContextProvider>
-          <ToastContainer />  {/* To display toast messages */}
-          <RouterProvider router={router} />
-        </UserContextProvider>
-      </CartContextProvider>
+      <ToastContainer />  {/* To display toast messages */}
+      <RouterProvider router={router} />
     </>
   )
 }

@@ -39,7 +39,14 @@ export default function Cart() {
                 }
             });
             setCartCount(cartCount + 1);
-            getCart(); // تحديث السلة بعد التعديل
+            setCart(prevCart => {
+                return prevCart.map(item => {
+                    if (item.productId === productId) {
+                        return { ...item, quantity: item.quantity + 1 }
+                    }
+                    return item
+                })
+            })
         } catch (error) {
             console.error("Error increasing quantity:", error);
         }
@@ -69,9 +76,15 @@ export default function Cart() {
                     }
                 });
             }
-
             setCartCount(cartCount - 1);
-            getCart(); // تحديث السلة بعد التعديل
+            setCart(prevCart => {
+                return prevCart.map(item => {
+                    if (item.productId === productId) {
+                        return { ...item, quantity: item.quantity - 1 }
+                    }
+                    return item
+                })
+            })
         } catch (error) {
             console.error("Error decreasing quantity:", error);
         }

@@ -6,9 +6,8 @@ import Footer from '../components/user/footer/Footer.jsx';
 export default function AuthLayout() {
     return (
         <div>
-            {/* <CustomNavbar /> */}
+            <CustomNavbar />
             <Outlet />
-            <Footer/>
         </div>
     )
 }

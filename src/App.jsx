@@ -20,6 +20,8 @@ import Orders from './pages/user/profile/Orders.jsx';
 import { UserContextProvider } from './components/user/context/UserContext.jsx';
 import Image from './pages/user/profile/Image.jsx';
 import AuthProtectedRouter from './components/user/AuthProtectedRouter.jsx';
+import ForgotPassword from './pages/user/forgetPassword/ForgetPassword.jsx';
+import SendCode from './pages/user/sendCode/SendCode.jsx';
 
 export default function App() {
   const router = createBrowserRouter(
@@ -27,9 +29,14 @@ export default function App() {
       {
         path: "/auth",
         element:
-          <AuthProtectedRouter>
-            <AuthLayout />
-          </AuthProtectedRouter>
+          <UserContextProvider>
+            <CartContextProvider>
+
+              <AuthProtectedRouter>
+                <AuthLayout />
+              </AuthProtectedRouter>
+            </CartContextProvider>
+          </UserContextProvider>
         ,
         children: [
           {
@@ -39,6 +46,14 @@ export default function App() {
           {
             path: "login",
             element: <Login />,
+          },
+          {
+            path: "send-code",
+            element: <SendCode />,
+          },
+          {
+            path: "forgot-password", // مسار جديد لصفحة "نسيت كلمة المرور"
+            element: <ForgotPassword />,
           },
         ],
       },

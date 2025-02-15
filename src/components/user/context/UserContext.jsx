@@ -9,14 +9,20 @@ export const UserContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     const getUser = async () => {
+
         try {
-            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/profile`, {
-                headers: {
-                    Authorization: `Tariq__${localStorage.getItem('userToken')}`
-                }
-            });
-            setUserInfo(response.data.user);
-            console.log(response.data.user)
+            const token = localStorage.getItem('userToken');
+            if (token) {
+                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/profile`, {
+                    headers: {
+                        Authorization: `Tariq__${token}`,
+                    },
+                });
+                setUserInfo(response.data.user);
+                console.log(response.data.user);
+            } else {
+                setUserInfo(null);
+            }
         } catch (error) {
             console.error(error);
             setUserInfo(null);
@@ -29,9 +35,8 @@ export const UserContextProvider = ({ children }) => {
         getUser();
     }, [])
 
-
     return (
-        <UserContext.Provider value={{ userInfo, setUserInfo, loading, setLoading }}>
+        <UserContext.Provider value={{ userInfo, setUserInfo, loading, setLoading, getUser }}>
             {children}
         </UserContext.Provider>
     )

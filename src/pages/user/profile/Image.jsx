@@ -34,13 +34,13 @@ export default function Image() {
                 }
             );
             if (response.status == 200) {
-                toast.success("Image updated successfully")
+                toast.success("Image updated successfully");
             }
             console.log(response);
         } catch (e) {
             console.log(e);
 
-            toast.error("Error updating image")
+            toast.error("Error updating image");
         } finally {
             setIsLoading(false);
         }

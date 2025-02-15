@@ -12,7 +12,7 @@ export default function SomeCategory() {
 
     const getCategories = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/categories/active`);
+            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/categories/active?limit=7`);
             setCategories(response.data.categories);
             console.log(response.data.categories);
         } catch (err) {

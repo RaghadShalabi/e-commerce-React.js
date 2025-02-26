@@ -22,6 +22,7 @@ import Image from './pages/user/profile/Image.jsx';
 import AuthProtectedRouter from './components/user/AuthProtectedRouter.jsx';
 import ForgotPassword from './pages/user/forgetPassword/ForgetPassword.jsx';
 import SendCode from './pages/user/sendCode/SendCode.jsx';
+import CreateOrder from './pages/user/order/CreateOrder.jsx';
 
 export default function App() {
   const router = createBrowserRouter(
@@ -92,6 +93,10 @@ export default function App() {
           {
             path: "cart",
             element: <Cart />
+          },
+          {
+            path: "createOrder",
+            element: <CreateOrder />
           },
           {
             path: "profile",

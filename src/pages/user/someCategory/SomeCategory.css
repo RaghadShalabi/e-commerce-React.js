@@ -1,0 +1,24 @@
+/* SomeCategory.css */
+.some-category-container {
+    background-color: #f8f9fa; /* لون خلفية فاتح */
+    padding: 20px 0;
+}
+
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-10px); /* تحريك البطاقة للأعلى عند التمرير */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* زيادة الظل عند التمرير */
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #FFCF50; /* لون أزرار التنقل */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 24px; /* حجم الأيقونات */
+}

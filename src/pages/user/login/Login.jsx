@@ -51,14 +51,20 @@ export default function Login() {
         navigate('/auth/send-code');
     };
 
+    const handleCreateAccountClick = () => {
+        navigate('/auth/register');
+    };
+
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
             <Row className="w-100">
-                <Col xs={12} md={6} className="mx-auto">
-                    <h2 className="text-center mb-4">Log in to your account</h2>
+                <Col xs={12} md={6} lg={4} className="mx-auto">
+                    <div className="text-center mb-4">
+                        <h2 style={{ color: '#FFCF50', fontWeight: 'bold' }}>Log in to your account</h2>
+                        <p style={{ color: '#6c757d' }}>Please enter your credentials to login.</p>
+                    </div>
 
-                    {/* نموذج تسجيل الدخول */}
-                    <Form onSubmit={handleSubmit(loginUser)} className="p-4 border rounded shadow-sm bg-light">
+                    <Form onSubmit={handleSubmit(loginUser)} className="p-4 border rounded shadow-sm bg-white">
                         {serverError && <div className='text-danger mb-3 text-center'>{serverError}</div>}
 
                         <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
@@ -67,6 +73,7 @@ export default function Login() {
                                 placeholder=""
                                 {...register('email', { required: "Email address is required" })}
                                 isInvalid={!!errors.email}
+                                style={{ borderRadius: '10px' }}
                             />
                             <Form.Control.Feedback type="invalid">
                                 {errors.email?.message}
@@ -79,23 +86,31 @@ export default function Login() {
                                 placeholder=""
                                 {...register('password', { required: "Password is required" })}
                                 isInvalid={!!errors.password}
+                                style={{ borderRadius: '10px' }}
                             />
                             <Form.Control.Feedback type="invalid">
                                 {errors.password?.message}
                             </Form.Control.Feedback>
                         </FloatingLabel>
 
-                        <div className="d-grid">
-                            <Button type="submit" variant="primary" size="lg" disabled={isLoading}>
+                        <div className="d-grid mb-3">
+                            <Button type="submit" size="lg" disabled={isLoading} style={{ borderRadius: '10px', border: 'none', background: '#FFCF50' }}>
                                 {isLoading ? "Loading..." : "Login"}
                             </Button>
                         </div>
 
-                        {/* زر "نسيت كلمة المرور" */}
-                        <div className="text-center mt-3">
-                            <Button variant="link" onClick={handleForgotPasswordClick}>
-                                Forgot Password?
+                        <div className="text-center">
+                            <Button variant="link" onClick={handleForgotPasswordClick} className="text-decoration-none" style={{ color: '#FFCF50' }}>
+                                Forgot Your Password?
                             </Button>
+                        </div>
+
+                        <div className="text-center mt-3">
+                            <p style={{ color: '#6c757d' }}>No account?{' '}
+                                <Button variant="link" onClick={handleCreateAccountClick} className="text-decoration-none" style={{ color: '#FFCF50', padding: '0' }}>
+                                    Create one here
+                                </Button>
+                            </p>
                         </div>
                     </Form>
                 </Col>

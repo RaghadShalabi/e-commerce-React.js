@@ -1,0 +1,45 @@
+/* Footer.css */
+.footer {
+    background-color: #343a40; /* لون خلفية داكن */
+    color: #ffffff; /* لون النص الأبيض */
+}
+
+.footer-title {
+    color: #FFCF50; /* لون العنوان الأصفر */
+    margin-bottom: 1rem;
+}
+
+.footer-text {
+    color: #cccccc; /* لون النص الفاتح */
+    margin-bottom: 0.5rem;
+}
+
+.footer-link {
+    color: #cccccc; /* لون الروابط الفاتح */
+    text-decoration: none; /* إزالة التسطير */
+    transition: color 0.3s ease; /* تأثير تغيير اللون */
+}
+
+.footer-link:hover {
+    color: #FFCF50; /* تغيير لون الروابط عند التمرير */
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a {
+    color: #ffffff; /* لون الأيقونات الأبيض */
+    font-size: 1.5rem;
+    transition: color 0.3s ease; /* تأثير تغيير اللون */
+}
+
+.social-icons a:hover {
+    color: #FFCF50; /* تغيير لون الأيقونات عند التمرير */
+}
+
+.footer-bottom {
+    background-color: #212529; /* لون خلفية أغمق */
+    color: #ffffff; /* لون النص الأبيض */
+}

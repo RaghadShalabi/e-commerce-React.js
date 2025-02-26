@@ -49,24 +49,38 @@ export default function SendCode() {
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
             <Row className="w-100">
-                <Col xs={12} md={6} className="mx-auto">
-                    <h2 className="text-center mb-4">Send Verification Code</h2>
-                    <Form onSubmit={handleSubmit(handleSendCode)} className="p-4 border rounded shadow-sm bg-light">
+                <Col xs={12} md={6} lg={4} className="mx-auto">
+                    <div className="text-center mb-4">
+                        <h2 style={{ color: '#FFCF50', fontWeight: 'bold' }}>Send Verification Code</h2>
+                        <p style={{ color: '#6c757d' }}>Please enter your email to receive a verification code.</p>
+                    </div>
+
+                    <Form onSubmit={handleSubmit(handleSendCode)} className="p-4 border rounded shadow-sm bg-white">
                         <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
                             <Form.Control
                                 type="email"
                                 placeholder=""
                                 {...register('email', { required: "Email address is required" })}
                                 isInvalid={!!errors.email}
+                                style={{ borderRadius: '10px' }}
                             />
                             <Form.Control.Feedback type="invalid">
                                 {errors.email?.message}
                             </Form.Control.Feedback>
                         </FloatingLabel>
-                        <div className="d-grid">
-                            <Button type="submit" variant="primary" size="lg" disabled={isLoading}>
+
+                        <div className="d-grid mb-3">
+                            <Button type="submit" size="lg" disabled={isLoading} style={{ borderRadius: '10px', border: 'none', background: '#FFCF50' }}>
                                 {isLoading ? "Sending..." : "Send Code"}
                             </Button>
+                        </div>
+
+                        <div className="text-center mt-3">
+                            <p style={{ color: '#6c757d' }}>Remember your password?{' '}
+                                <Button variant="link" onClick={() => navigate('/auth/login')} className="text-decoration-none" style={{ color: '#FFCF50', padding: '0' }}>
+                                    Log in here
+                                </Button>
+                            </p>
                         </div>
                     </Form>
                 </Col>

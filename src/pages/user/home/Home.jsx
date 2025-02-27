@@ -2,7 +2,6 @@ import React from 'react';
 import PopularCategories from './PopularCategories';
 import FeaturedProducts from './FeaturedProducts';
 import SomeCategory from '../someCategory/SomeCategory';
-import Footer from '../../../components/user/footer/Footer.jsx';
 import Newsletter from './Newsletter.jsx';
 import { MdShoppingCart } from 'react-icons/md';
 import { GiAmpleDress, GiClothes } from 'react-icons/gi';

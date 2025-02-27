@@ -50,6 +50,16 @@ export default function CategoryProducts() {
                                     style={{ maxHeight: '200px', objectFit: 'cover' }}
                                 />
                                 <h4 className="mt-3" style={{ color: '#343a40', fontWeight: '500' }}>{product.name}</h4>
+                                <p style={{ color: '#6c757d' }}>
+                                    {/* Old Price with Strikethrough and Red Color */}
+                                    <span style={{ textDecoration: 'line-through', color: 'red', marginRight: '10px' }}>
+                                        ${product.price}
+                                    </span>
+                                    {/* New Price (After Discount) in Black */}
+                                    <span style={{ color: 'black', fontWeight: 'bold' }}>
+                                        ${product.finalPrice}
+                                    </span>
+                                </p>
                             </Link>
                         </div>
                     </Col>

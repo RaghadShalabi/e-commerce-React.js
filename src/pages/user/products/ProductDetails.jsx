@@ -188,16 +188,16 @@ export default function ProductDetails() {
 
                     {/* عرض التقييمات الحالية */}
                     <Card className="mt-4 p-4 border rounded shadow-sm bg-white">
-                        <Card.Title style={{ color: '#343a40', fontWeight: 'bold' }}>Reviews</Card.Title>
+                        <Card.Title style={{ color: '#343a40', fontWeight: 'bold' }}>Reviews: </Card.Title>
                         {product.reviews && product.reviews.length > 0 ? (
                             product.reviews.map((review, index) => (
                                 <Card key={index} className="mb-3">
                                     <Card.Body>
                                         <Card.Text>
-                                            <strong>Rating:</strong> {review.rating}
+                                           <strong>Rating:</strong> {review.rating}
                                         </Card.Text>
                                         <Card.Text>
-                                            <strong>Comment:</strong> {review.comment}
+                                      <strong>  {review.createdBy.userName}: </strong> {review.comment}
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>
